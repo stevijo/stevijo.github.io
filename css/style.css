@@ -42,6 +42,7 @@ blockquote {
   box-sizing: inherit;
 }
 .inner {
+  position: relative;
   padding: 20px 40px;
   background-color: #fff;
   max-width: 700px;
@@ -2535,7 +2536,7 @@ pre {
 .highlight {
   background-color: #f1f1f1;
   padding: 7px;
-  margin: 20px;
+  margin: 20px 0px;
   border-radius: 10px;
 }
 footer .inner {
