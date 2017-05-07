@@ -2544,6 +2544,9 @@ footer .inner {
   padding-top: 50px;
   padding-bottom: 50px;
 }
+footer .inner .footernav ul {
+  padding: 0;
+}
 footer .inner .footernav ul li {
   display: inline;
 }
