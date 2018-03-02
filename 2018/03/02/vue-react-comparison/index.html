@@ -1,0 +1,168 @@
+<!doctype html>
+<html class="no-js" lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Comparison between React.js and Vue.js</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+        <link rel="stylesheet" href="/dist/app.css">
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+        <div class="blog">
+    <div class="inner">
+        <a class="title" href="/">Stefan Mayer</a>
+        <div class="description">
+            Tech Blog
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="https://github.com/stevijo" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> Github</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="inner">
+    <div id="sidebar" class="sidebar">
+    </div>
+    
+<div id="content" class="content">
+    
+        <span class="post--date">
+            <time datetime="2018-03-01T23:00:00.000Z" itemprop="datePublished">02 Mar 2018</time>
+        </span>
+    
+    <h1>Comparison between React.js and Vue.js</h1>
+    <div class="para">
+        
+<script src="/dist/vue.min.js"></script>
+<template id="vuejs-stat-template">
+    <div class="highlight">
+        <div class="vuebox">
+            <h3>VueJS Example</h3>
+            <input v-model="inputField" type="text">
+            <p>{{ modified }}</p>
+        </div>
+    </div>
+</template>
+<template id="reactjs-stat-template">
+    <div class="highlight">
+        <div class="vuebox">
+            <h3>ReactJS Example</h3>
+            <input v-model="inputField" type="text">
+            <p>{{ modified }}</p>
+        </div>
+    </div>
+</template>
+<script>
+    Vue.component('vue', {
+        template: "#vuejs-stat-template",
+        data: function() {
+            return {
+                inputField: "Type Me"
+            };
+        },
+        computed: {
+            modified: function() {
+                return this.inputField + "!!!!";
+            }
+        }
+    });
+    Vue.component('react', {
+        template: "#reactjs-stat-template",
+        data: function() {
+            return {
+                inputField: "Type Me"
+            };
+        },
+        computed: {
+            modified: function() {
+                return this.inputField + "!!!!";
+            }
+        }
+    });
+</script>
+
+<p>React.js and Vue.js are some very similiar frameworks,<br>in the way they approach programming in the web.<br>They both focus on the concept of components, which basically are independent UI elements, which are responsible for displaying data, also called props, in this specific UI element.<br>This concept is very revolutionary, because now I can only pass some data to a component, and let the component handle all the web stuff by itself.<br>Such a component implies that all what is related to this Ui Element (HTML, CSS and Javascript) is combined in one file and therefore encapsulating it, something like what a class does with encapsulating state in object oriented programming.</p>
+<p>React.js and Vue.js both implement this basic concept of a component. But both handle this very differently.<br>This shall just be a deep comparison between just these two frameworks. There are also some other frameworks which implement such a component system,<br>but do this in a much more opinionated fashion, like angular 2.</p>
+<h2 id="Technical-comparison"><a href="#Technical-comparison" class="headerlink" title="Technical comparison"></a>Technical comparison</h2><p>This chapter focuses on the comparison on technical side. And features the comparison in setup and more code focused parts of the two frameworks. </p>
+<h3 id="Setup-comparison"><a href="#Setup-comparison" class="headerlink" title="Setup comparison"></a>Setup comparison</h3><p>This part compares the setup of React.js and Vue.js. Especially what build-systems are needed to get started with the frameworks.</p>
+<h4 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h4><p>With vue.js you have the choice between the runtime and compile time variant.<br>You can start with the runtime variant which is extrodinary easy to use, you can basically just use a simple <code>script</code> tag. </p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/vue"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>There are some disadvantages about this approach. For example templates are compiled at runtime.<br>If you use a build system like webpack combined with single file components your template is directly converted to a render function.<br>If you use <code>vue-loader</code> in webpack to transpile your javascript, you also get hot reload out of the box.</p>
+<h4 id="React"><a href="#React" class="headerlink" title="React"></a>React</h4><p>Because React.js focuses a lot on the new language features of ECMAscript 6, you are forced to use a build system.<br>In practice you would always do that anyways, but for a beginner this may be hard to setup. You also need a separate package if you want to enable hot reloading, because React.js does not support this natively. You also need to be very familiar with the React.js ecosystem to use it properly, as the base package does not include too much.</p>
+<h3 id="Comparison-in-local-state-management"><a href="#Comparison-in-local-state-management" class="headerlink" title="Comparison in local state management"></a>Comparison in local state management</h3><p>Both frameworks use some kind of local state management. Such a state management is essentially a json object, which represents the data to be rendered by a component. </p>
+<h4 id="Vue-1"><a href="#Vue-1" class="headerlink" title="Vue"></a>Vue</h4><p>In Vue a lot of magic happens behind the scene. This is mainly due to <code>Object.defineProperty()</code>. You can just modify a variable and Vue.js automatically renders a new DOM according to the modified data. Vue.js also has some helper properties like computed, where you can specify a function which generates data. I have built a simple example with VueJS and we will rebuild this example with React.js later on in this article. The example for the most part just adds some !s behind the text in a input field.</p>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4>
+<div id="vuejs-stat">
+<vue></vue>
+</div>
+<script>    
+    new Vue({
+        el: "#vuejs-stat"
+    });
+</script>
+
+<h5 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h5><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"highlight"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"vuebox"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">h3</span>&gt;</span>VueJS Example<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"inputField"</span> <span class="attr">type</span>=<span class="string">"text"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; modified &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">    export default &#123;</div><div class="line">        data() &#123;</div><div class="line">            return &#123;</div><div class="line">                inputField: "Type Me"</div><div class="line">            &#125;</div><div class="line">        &#125;,</div><div class="line">        computed: &#123;</div><div class="line">            modified() &#123;</div><div class="line">                return this.inputField + "!!!!"</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="React-js"><a href="#React-js" class="headerlink" title="React.js"></a>React.js</h4><p>In React.js we need to manage our state more precisley. This is mostly done with heavy use of the so called render function, which generates the DOM for the specific component. So if we have a dependend or computed variable this should be calculated within the render function of React.js. We also need to call the <code>setState</code> method if we modify the state and want the data to be rerendered. The below example simply just does the same as the Vue.js example above.</p>
+<h5 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h5>
+<div id="reactjs-stat">
+<react></react>
+</div>
+<script>    
+    new Vue({
+        el: "#reactjs-stat"
+    });
+</script>
+
+<h5 id="Code-1"><a href="#Code-1" class="headerlink" title="Code"></a>Code</h5><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">constructor</span>(props) &#123;</div><div class="line">        <span class="keyword">super</span>(props)</div><div class="line"></div><div class="line">        <span class="keyword">this</span>.handleChange = <span class="keyword">this</span>.handleChange.bind(<span class="keyword">this</span>);</div><div class="line">        <span class="keyword">this</span>.state = &#123;</div><div class="line">            <span class="attr">inputField</span>: <span class="string">"Type Me"</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    handleChange(event) &#123;</div><div class="line">        <span class="comment">// Calling setState triggers another render</span></div><div class="line">        <span class="keyword">this</span>.setState(&#123;</div><div class="line">            ...this.state,</div><div class="line">            <span class="attr">inputField</span>: e.target.value</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    render() &#123;</div><div class="line">        <span class="keyword">const</span> inputField = <span class="keyword">this</span>.state.inputField</div><div class="line">        <span class="keyword">const</span> modified = inputField + <span class="string">"!!!!"</span></div><div class="line"></div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"highlight"</span>&gt;</span></span></div><div class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">"vuebox"</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">h3</span>&gt;</span>ReactJS Example<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">input</span> <span class="attr">value</span>=<span class="string">&#123;inputField&#125;</span> </span></div><div class="line">                           <span class="attr">onChange</span>=<span class="string">&#123;this.handleChange&#125;</span> </div><div class="line">                           <span class="attr">type</span>=<span class="string">"text"</span>&gt;</div><div class="line">                    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;modified&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span> </div><div class="line">        )</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Rendering"><a href="#Rendering" class="headerlink" title="Rendering"></a>Rendering</h3><p>We can describe this chapter very short, because both React.js and Vue.js use a virtual DOM internally. So every change by a component on the DOM is basically collected in RAM. These virtual DOMs in RAM are then compared to the actual DOM and then changes are applied to the real DOM based on the differences. This is especially efficient with lists as most of the times only one element needs to be added or one element is moved. Instead of rerendering all elements. Both frameworks have also a system of reusing list elements.<br>The system of a virtual DOM also has the advantage that these frameworks can be decoupled from a standard browser DOM and also be used with for example mobile applications.<br>In Vue.js performance optimizations on the render process are mostly done by the framework itself, whereas in React.js you need to manually optimize rerenders. This also means without manual optimizations Vue.js is generally faster. </p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>Both frameworks are very similiar in there general approach on how to build a modern web framework. But there are some minor differences which are making the development process less of a pain. This is especially the case with Vue.js with helper properties like computed and directives like <code>v-model</code>. Also in Vue.js you need not to manually trigger a function for a rerender or optimize the render process itself.</p>
+
+    </div>
+</div>
+
+    
+        <div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+var disqus_config = function () {
+    this.page.url = "https://stevijo.me/2018/03/02/vue-react-comparison/";  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = "6db420ed-368e-4a7b-95eb-87d22eb34d8b"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://stevijo-me.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+</div>
+<footer>
+    <div class="inner">
+        All content copyright Stefan Blog © 2018 All rights reserved.
+        <nav class="footernav">
+            <ul>
+                <li><a href="/impressum">Impressum</a></li>
+                <li><a href="/datenschutzerklaerung">Datenschutzerklärung</a></li>
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+        <script src="/dist/app.js"></script>
+    </body>
+</html>
